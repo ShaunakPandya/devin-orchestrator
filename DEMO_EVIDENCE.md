@@ -37,7 +37,7 @@ Run facts (issue #1, verified):
 | **#4** | tests | ✅ COMPLETED | [#8](https://github.com/ShaunakPandya/superset/pull/8) | 25m compute | Added `tests/unit_tests/utils/test_dates.py`, 10 pytest tests for `datetime_to_epoch` / `now_as_float`, all passing; didn't touch the module under test | Dashboard shows real compute (25m). The suspend/resume resilience story is told **verbally**, not via an inflated number (see below). |
 | **#5** | docs | ☑️ NO_CHANGE | — | ~6m compute | Scanned CONTRIBUTING.md + all top-level docs; every relative link resolves, no in-scope outdated commands → verified clean, no change forced | Second "found nothing to fake-fix" example, across a different category (docs). |
 | **#9** | code-quality | ☑️ NO_CHANGE | — | 8m compute | Ran 6 linters + AST analysis across 65 files in `superset/utils/`; confirmed **no unused imports to remove** → honest `no_change_needed` | **Proof it doesn't fabricate.** "In 8 minutes Devin audited 65 files with 6 tools and correctly found nothing to change." Disarms the 'was this staged?' skeptic. |
-| **#10** | code-quality | 🔒 HELD (live demo) | — | — | — | **trigger ONE live on camera:** `curl -X POST localhost:8000/simulate/issue/10` |
+| **#14** | docs | 🔒 HELD (live demo) | — | — | — | **trigger ONE live on camera:** `curl -X POST localhost:8000/simulate/issue/14` (verify it's still held first — see note) |
 
 **Six states, and what each proves on camera:** ✅ COMPLETED (real PR, #1/#3/#4) · ☑️ NO_CHANGE (verified clean, #5/#9) · 🟠 NEEDS_ATTENTION (blocked, needs a human, #2) · ❌ FAILED (session crashed — none this run) · 🟡 QUEUED / 🔵 RUNNING (in flight). The spread is the story: **five shipped PRs, two verified-clean, one escalated — honest, not theater.**
 
@@ -55,8 +55,11 @@ Real behaviors surfaced live and I hardened the system against each — a "I tes
 
 ## Recording order (from the Loom script)
 1. **WHAT** (0:00–0:40) — unstaffed backlog problem, in VP language → dashboard idle
-2. **HOW** (0:40–2:20) — trigger **#10** live (`curl -X POST localhost:8000/simulate/issue/10`) → app.devin.ai session → PR #6 (a pre-completed one) → dashboard funnel + needs-attention
+2. **HOW** (0:40–2:20) — trigger **#14** live (`curl -X POST localhost:8000/simulate/issue/14`) → app.devin.ai session → PR #6 (a pre-completed one) → dashboard funnel + needs-attention
 3. **WHY** (2:20–3:40) — Devin = API primitive + platform (Automations / Review / Wiki)
 4. **WHEN** (3:40–5:00) — pilot next steps + quantified close ("imagine how it compounds")
 
-> Never wait on a session on camera. Trigger **#10**, then cut to a pre-completed one (#1/#3/#4).
+> Never wait on a session on camera. Trigger **#14**, then cut to a pre-completed one (#1/#3/#4).
+>
+> **Before recording, confirm #14 is still held:** `curl -s localhost:8000/status | jq '[.remediations[].issue_number]'` — if 14 is already listed (a rehearsal fired it), mint a fresh one and use that number:
+> `docker compose exec -T api python -c "import httpx; from app import config; H={'Authorization':f'Bearer {config.GITHUB_TOKEN}','Accept':'application/vnd.github+json'}; print(httpx.post(f'https://api.github.com/repos/{config.GITHUB_REPO}/issues',headers=H,json={'title':'[docs] Add a missing module docstring','body':'Add a one-line module docstring to a superset/utils file missing one. Docs-only.','labels':['devin-remediate','docs']}).json()['number'])"`

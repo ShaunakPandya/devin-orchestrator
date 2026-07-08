@@ -25,14 +25,14 @@ Per Oscar: **index on business impact. Timing is 1 min current state / 2–3 min
 
 Keep **app.devin.ai visible** throughout (evaluators built it — showing it work is free points).
 
-1. **The event (10s).** Terminal: `curl -X POST localhost:8000/simulate/issue/12` → `{"enqueued":12}`. *"The trigger is an event. Here it's a label; in production it's a Snyk finding, a Sentry alert, a Jira ticket — same endpoint."*
+1. **The event (10s).** Terminal: `curl -X POST localhost:8000/simulate/issue/14` → `{"enqueued":14}`. *"The trigger is an event. Here it's a label; in production it's a Snyk finding, a Sentry alert, a Jira ticket — same endpoint."*
 2. **Devin working (20s).** Cut to app.devin.ai: the new session cloning Superset. *"My orchestrator created a Devin session over the v3 API — with a structured-output schema, so it returns machine-readable results, not chat."*
 3. **A finished result (40s).** Cut to a pre-completed PR (#6 flask CVE): `Fixes #1`, one-package diff, CVE named. *"I never told it which package — it ran pip-audit itself, found the advisory, scoped the fix, and even flagged a second CVE it safely left alone. That's an agent, not a script."*
 4. **The leader's view (40s).** Dashboard: issues detected, PRs open, success rate, median time-to-fix, cost. *"This is how a leader knows it's working."* Point at **needs-attention (#2)**: *"when Devin can't fix it safely, it doesn't guess — it escalates. The system knows when it doesn't know."*
 5. **Devin-native observability (20s).** Scroll to the "Devin-native analytics" panel. *"And this isn't just my dashboard — this bottom panel pulls straight from Devin's own analytics API: `/sessions/insights` and `/consumption/daily`. I'm not just calling the session API to create work; I'm using Devin's org-level observability — session sizing, message counts, ACU consumption — as first-class data. The platform already exposes what a leader needs to measure."*
 6. **Breadth (20s).** *"Four categories, three outcome types: five shipped PRs, one safe escalation, two verified-clean. It doesn't just fix — it fixes, escalates, and verifies."*
 
-> Never wait on the live session. Trigger #12, cut away immediately.
+> Never wait on the live session. Trigger #14, cut away immediately.
 
 ---
 
