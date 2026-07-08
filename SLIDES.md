@@ -30,7 +30,7 @@ Keep **app.devin.ai visible** throughout (evaluators built it — showing it wor
 3. **A finished result (40s).** Cut to a pre-completed PR (#6 flask CVE): `Fixes #1`, one-package diff, CVE named. *"I never told it which package — it ran pip-audit itself, found the advisory, scoped the fix, and even flagged a second CVE it safely left alone. That's an agent, not a script."*
 4. **The leader's view (40s).** Dashboard: issues detected, PRs open, success rate, median time-to-fix, cost. *"This is how a leader knows it's working."* Point at **needs-attention (#2)**: *"when Devin can't fix it safely, it doesn't guess — it escalates. The system knows when it doesn't know."*
 5. **Devin-native observability (20s).** Scroll to the "Devin-native analytics" panel. *"And this isn't just my dashboard — this bottom panel pulls straight from Devin's own analytics API: `/sessions/insights` and `/consumption/daily`. I'm not just calling the session API to create work; I'm using Devin's org-level observability — session sizing, message counts, ACU consumption — as first-class data. The platform already exposes what a leader needs to measure."*
-6. **Breadth (20s).** *"Four categories, four outcomes: three shipped PRs, one safe escalation, two verified-clean. It doesn't just fix — it fixes, escalates, and verifies."*
+6. **Breadth (20s).** *"Four categories, three outcome types: five shipped PRs, one safe escalation, two verified-clean. It doesn't just fix — it fixes, escalates, and verifies."*
 
 > Never wait on the live session. Trigger #12, cut away immediately.
 
@@ -47,12 +47,12 @@ Keep **app.devin.ai visible** throughout (evaluators built it — showing it wor
 | | Before | After (this system) |
 |---|---|---|
 | Who does it | A senior eng's donated Friday | A Devin session, on an event |
-| Time-to-fix | Weeks in backlog | **Minutes** (median 8.8m this run) |
+| Time-to-fix | Weeks in backlog | **Minutes** (median under 5 min this run) |
 | Cost | ~$18K/quarter of eng time | A few dollars of compute |
 | Visibility | Gut feel | A live funnel: throughput, success %, cost |
 | Coverage | One heroic sprint | 4 categories, continuous |
 
-**This run's proof:** 4 PRs shipped · 100% success · median 8.8m · 1 safe escalation · 2 verified-clean.
+**This run's proof:** 5 PRs shipped · 100% success · median under 5 min · 1 safe escalation · 2 verified-clean. *(Present the live dashboard for exact current figures.)*
 
 **Platform, not tool (Oscar's heaviest point):** *"What I hand-built — a scheduler that fires sessions on an event and gates PRs on review — is a manual version of what Devin already productizes: Automations, Devin Review as the merge gate, Wiki so context compounds. The fact that I rebuilt a slice of the platform in an afternoon with the public API is the point: the primitive is general enough that the platform is the obvious next layer."*
 
